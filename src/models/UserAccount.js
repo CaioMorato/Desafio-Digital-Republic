@@ -6,7 +6,7 @@ const UserAccountSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    CPF: {
+    cpf: {
       type: Number,
       required: true,
       unique: true,
@@ -27,3 +27,5 @@ const UserAccountSchema = new mongoose.Schema(
 );
 
 const UserAccount = mongoose.model('UserAccount', UserAccountSchema);
+
+module.exports = UserAccount;
