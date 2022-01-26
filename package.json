@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/CaioMorato/Desafio-Digital-Republic#readme",
   "dependencies": {
-    "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "express": "^4.17.2"
   }
 }
