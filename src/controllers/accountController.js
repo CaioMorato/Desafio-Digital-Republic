@@ -35,34 +35,27 @@ const userLogin = async (req, res) => {
   try {
     const { cpf } = req.params;
 
-    const findAccount = await accountServices.findUser(cpf);
-
-    if (!findAccount) {
-      return res
-        .status(StatusCodes.BAD_REQUEST)
-        .json({ message: 'Verifique o CPF digitado e tente novamente' });
-    }
-
     const token = generateToken(cpf);
 
     return res.status(StatusCodes.OK).json({ token });
   } catch (err) {
     console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
 const depositBalance = async (req, res) => {
   try {
-    const { amount } = req.body;
     const { authorization } = req.headers;
-
-    const { cpf } = getPayload(authorization);
+    const { amount } = req.body;
 
     if (amount <= 0 || amount >= 2000 || typeof amount !== 'number') {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'O valor de depósito deve ser um valor numérico maior que 0 e menor que ',
       });
     }
+
+    const { cpf } = getPayload(authorization);
 
     const { balance } = await accountServices.depositBalance(cpf, amount);
 
@@ -73,6 +66,7 @@ const depositBalance = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 

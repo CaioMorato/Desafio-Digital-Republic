@@ -19,4 +19,23 @@ const userAlreadyExists = async (req, res, next) => {
   }
 };
 
-module.exports = { userAlreadyExists };
+const userNotFound = async (req, res, next) => {
+  try {
+    const { cpf } = req.params;
+
+    const findAccount = await accountServices.findUser(cpf);
+
+    if (!findAccount) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: 'Verifique o CPF digitado e tente novamente' });
+    }
+
+    next();
+  } catch (err) {
+    console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { userAlreadyExists, userNotFound };
