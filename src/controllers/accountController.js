@@ -2,6 +2,8 @@ const { StatusCodes } = require('http-status-codes');
 const userInfoValidation = require('../validations/userInfoValidation');
 const accountServices = require('../services/accountsServices');
 
+const { generateToken } = require('../services/tokenServices');
+
 const newAccount = async (req, res, next) => {
   try {
     const { name, cpf, balance } = req.body;
@@ -12,9 +14,9 @@ const newAccount = async (req, res, next) => {
       return res.status(StatusCodes.BAD_REQUEST).json({ message: error.details[0].message });
     }
 
-    const findUser = await accountServices.findUser(cpf);
+    const findAccount = await accountServices.findUser(cpf);
 
-    if (findUser) {
+    if (findAccount) {
       return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ message: 'Já existe um usuário com este CPF cadastrado' });
@@ -36,4 +38,24 @@ const newAccount = async (req, res, next) => {
   }
 };
 
-module.exports = { newAccount };
+const userLogin = async (req, res, next) => {
+  try {
+    const { cpf } = req.params;
+
+    const findAccount = await accountServices.findUser(cpf);
+
+    if (!findAccount) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ message: 'Verifique o CPF digitado e tente novamente' });
+    }
+
+    const token = generateToken(cpf);
+
+    return res.status(StatusCodes.OK).json({ token });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { newAccount, userLogin };
