@@ -3,6 +3,6 @@ const accountRoutes = express.Router();
 const accountController = require('../controllers/accountController');
 
 accountRoutes.post('/account', accountController.newAccount);
-accountRoutes.put('/account/:cpf', accountController.userLogin);
+accountRoutes.put('/login/:cpf', accountController.userLogin);
 
 module.exports = accountRoutes;
