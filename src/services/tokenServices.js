@@ -13,14 +13,10 @@ const generateToken = (cpf) => {
   return token;
 };
 
-const validateToken = (token) => {
-  if (!token) {
-    return false;
-  }
-
+const getPayload = (token) => {
   const payload = jwt.verify(token, SECRET);
 
   return payload;
 };
 
-module.exports = { generateToken, validateToken };
+module.exports = { generateToken, getPayload };

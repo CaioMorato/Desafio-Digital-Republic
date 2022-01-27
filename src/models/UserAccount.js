@@ -11,7 +11,7 @@ const UserAccountSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    saldo: {
+    balance: {
       type: Number,
       default: 10000,
     },

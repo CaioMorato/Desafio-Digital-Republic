@@ -13,9 +13,9 @@ const findUser = async (cpf) => {
   }
 };
 
-const newAccount = async (name, cpf, saldo) => {
+const newAccount = async (name, cpf, balance) => {
   try {
-    const createUser = await UserAccount.create({ name, cpf, saldo });
+    const createUser = await UserAccount.create({ name, cpf, balance });
 
     if (!createUser) {
       return false;
@@ -28,7 +28,17 @@ const newAccount = async (name, cpf, saldo) => {
 };
 
 const depositBalance = async (cpf, amount) => {
-  const findAccountUpdateBalance = await UserAccount.findOneAndUpdate({ cpf });
+  try {
+    const findAccountUpdateBalance = await UserAccount.findOneAndUpdate(
+      { cpf },
+      { $inc: { balance: amount } },
+      { new: true }
+    );
+
+    return findAccountUpdateBalance;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = { newAccount, findUser, depositBalance };
