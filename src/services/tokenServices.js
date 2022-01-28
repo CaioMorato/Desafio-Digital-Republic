@@ -7,7 +7,7 @@ const generateToken = (cpf) => {
   const payload = { cpf };
 
   const token = jwt.sign(payload, SECRET, {
-    expiresIn: '10m',
+    expiresIn: '20m',
   });
 
   return token;

@@ -44,14 +44,14 @@ const depositBalance = async (cpf, amount) => {
 
 const transferBalance = async (cpf, receiver, amount) => {
   try {
-    const removeBalance = await UserAccount.findByIdAndUpdate(
+    const removeBalance = await UserAccount.findOneAndUpdate(
       { cpf },
       { $inc: { balance: -amount } },
       { new: true }
     );
 
-    const addBalance = await UserAccount.findByIdAndUpdate(
-      { receiver },
+    const addBalance = await UserAccount.findOneAndUpdate(
+      { cpf: receiver },
       { $inc: { balance: amount } },
       { new: true }
     );

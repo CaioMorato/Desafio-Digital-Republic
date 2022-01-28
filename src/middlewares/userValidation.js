@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const accountServices = require('../services/accountsServices');
+const { getPayload } = require('../services/tokenServices');
 
 const userAlreadyExists = async (req, res, next) => {
   try {
@@ -40,7 +41,10 @@ const userNotFound = async (req, res, next) => {
 
 const receiverNotFound = async (req, res, next) => {
   try {
+    const { authorization } = req.headers;
     const { receiver } = req.body;
+
+    const { cpf } = getPayload(authorization);
 
     const findAccount = await accountServices.findUser(receiver);
 
@@ -48,6 +52,12 @@ const receiverNotFound = async (req, res, next) => {
       return res
         .status(StatusCodes.BAD_REQUEST)
         .json({ message: 'Verifique o CPF do destinatário e tente novamente' });
+    }
+
+    if (cpf === receiver) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: 'Você não pode transferir dinheiro para sua própria conta. Digite outro CPF',
+      });
     }
 
     next();
