@@ -7,11 +7,12 @@ const {
   adminNotFound,
   passwordMatch,
 } = require('../middlewares/adminValidation');
+const tokenValidation = require('../middlewares/tokenValidation');
 
 adminRoutes.post('/admin', adminAlreadyExists, adminController.newAccount);
 
 adminRoutes.put('/admin', adminNotFound, passwordMatch, adminController.loginAdmin);
 
-// adminRoutes.get('/admin/:email', adminNotFound);
+adminRoutes.get('/admin', tokenValidation, adminController.getUsers);
 
 module.exports = adminRoutes;

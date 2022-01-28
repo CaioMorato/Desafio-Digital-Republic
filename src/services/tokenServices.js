@@ -14,7 +14,9 @@ const generateToken = (payload) => {
 const getPayload = (token) => {
   const payload = jwt.verify(token, SECRET);
 
-  return payload;
+  const { password: _, ...newPayload } = payload;
+
+  return newPayload;
 };
 
 module.exports = { generateToken, getPayload };

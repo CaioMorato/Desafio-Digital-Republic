@@ -1,4 +1,5 @@
 const AdminAccount = require('../models/AdminAccount');
+const UserAccount = require('../models/UserAccount');
 
 const findAdmin = async (email) => {
   try {
@@ -31,4 +32,14 @@ const newAccount = async (name, email, password) => {
   }
 };
 
-module.exports = { findAdmin, newAccount };
+const getUsers = async () => {
+  try {
+    const findUsers = await UserAccount.find({});
+
+    return findUsers;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { findAdmin, newAccount, getUsers };

@@ -62,6 +62,15 @@ const loginAdmin = async (req, res) => {
   }
 };
 
-const getUsers = async (req, res) => {};
+const getUsers = async (req, res) => {
+  try {
+    const findUsers = await adminServices.getUsers();
 
-module.exports = { newAccount, loginAdmin };
+    return res.status(StatusCodes.OK).json({ users: findUsers });
+  } catch (err) {
+    console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { newAccount, loginAdmin, getUsers };
