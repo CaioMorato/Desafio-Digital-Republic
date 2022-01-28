@@ -13,6 +13,6 @@ adminRoutes.post('/admin', adminAlreadyExists, adminController.newAccount);
 
 adminRoutes.put('/admin', adminNotFound, passwordMatch, adminController.loginAdmin);
 
-adminRoutes.get('/admin', tokenValidation, adminController.getUsers);
+adminRoutes.get('/users', tokenValidation, adminController.getUsers);
 
 module.exports = adminRoutes;
