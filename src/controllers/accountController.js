@@ -49,6 +49,7 @@ const depositBalance = async (req, res) => {
     const { authorization } = req.headers;
     const { amount } = req.body;
 
+    // turn this into middleware if going to use it again
     if (amount <= 0 || amount >= 2000 || typeof amount !== 'number') {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'O valor de depósito deve ser um valor numérico maior que 0 e menor que ',
@@ -70,4 +71,24 @@ const depositBalance = async (req, res) => {
   }
 };
 
-module.exports = { newAccount, userLogin, depositBalance };
+const transferBalance = async (req, res) => {
+  try {
+    const { authorization } = req.headers;
+    const { receiver, amount } = req.body;
+
+    const { cpf } = getPayload(authorization);
+
+    const { balance } = await accountServices.transferBalance(cpf, receiver, amount);
+
+    return res.status(StatusCodes.CREATED).json({
+      message:
+        'Sua transferência foi realizada e seu saldo foi atualizado! Obrigado por usar nossos serviços.',
+      balance,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { newAccount, userLogin, depositBalance, transferBalance };
