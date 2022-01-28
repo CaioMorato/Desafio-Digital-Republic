@@ -2,6 +2,23 @@ const { StatusCodes } = require('http-status-codes');
 const userInfoValidation = require('../validations/userInfoValidation');
 const accountServices = require('../services/accountsServices');
 
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+
 const { generateToken, getPayload } = require('../services/tokenServices');
 
 const newAccount = async (req, res) => {
@@ -22,9 +39,14 @@ const newAccount = async (req, res) => {
       });
     }
 
-    return res
-      .status(StatusCodes.OK)
-      .json({ message: 'Conta criada com Sucesso! Boas vindas ao DRBank!' });
+    return res.status(StatusCodes.CREATED).json({
+      message: 'Conta criada com Sucesso! Boas vindas ao DRBank!',
+      data: {
+        name,
+        cpf,
+        balance,
+      },
+    });
   } catch (err) {
     console.log(err);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR);

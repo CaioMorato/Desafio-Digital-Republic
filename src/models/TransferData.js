@@ -1,31 +1,30 @@
 const mongoose = require('./connection');
 
-const UserAccountSchema = new mongoose.Schema(
+const TransferDataSchema = new mongoose.Schema(
   {
-    name: {
+    sender: {
       type: String,
       required: true,
     },
-    cpf: {
+    receiver: {
       type: String,
       required: true,
-      unique: true,
     },
-    balance: {
+    amount: {
       type: Number,
-      default: 10000,
+      required: true,
     },
   },
   {
     // 'versionKey' removes the field "__v" which controls how many updates the document had
     versionKey: false,
     timestamps: {
-      createdAt: false,
+      createdAt: true,
       updatedAt: false,
     },
   }
 );
 
-const UserAccount = mongoose.model('UserAccount', UserAccountSchema);
+const TransferData = mongoose.model('TransferData', TransferDataSchema);
 
-module.exports = UserAccount;
+module.exports = TransferData;
