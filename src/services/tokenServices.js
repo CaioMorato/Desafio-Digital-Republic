@@ -3,9 +3,7 @@ require('dotenv').config();
 
 const SECRET = process.env.SECRET;
 
-const generateToken = (cpf) => {
-  const payload = { cpf };
-
+const generateToken = (payload) => {
   const token = jwt.sign(payload, SECRET, {
     expiresIn: '20m',
   });

@@ -1,6 +1,8 @@
 const { StatusCodes } = require('http-status-codes');
 const adminInfoValidation = require('../validations/adminInfoValidation');
 const adminServices = require('../services/adminServices');
+const crypto = require('crypto-js');
+const { generateToken } = require('../services/tokenServices');
 
 // COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
 // COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
@@ -14,6 +16,11 @@ const adminServices = require('../services/adminServices');
 // COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
 // COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
 // COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
+
+// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
+// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
+// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
+// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
 
 const newAccount = async (req, res) => {
   try {
@@ -42,4 +49,19 @@ const newAccount = async (req, res) => {
   }
 };
 
-module.exports = { newAccount };
+const loginAdmin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const token = generateToken({ email, password });
+
+    return res.status(StatusCodes.OK).json({ token });
+  } catch (err) {
+    console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+const getUsers = async (req, res) => {};
+
+module.exports = { newAccount, loginAdmin };
