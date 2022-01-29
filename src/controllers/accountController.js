@@ -2,26 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 const userInfoValidation = require('../validations/userInfoValidation');
 const accountServices = require('../services/accountsServices');
 
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-// COLOCAR CHECKOUT DA CONTA PRA APARECER NO RETORNO USUARIO E ADMIN
-
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-// VERIFICAÇÃO SE OS CAMPOS ESTÃO PREENCHIDOS USER
-
 const { generateToken, getPayload } = require('../services/tokenServices');
 
 const newAccount = async (req, res) => {
@@ -74,7 +54,6 @@ const depositBalance = async (req, res) => {
     const { authorization } = req.headers;
     const { amount } = req.body;
 
-    // turn this into middleware if going to use it again
     if (amount <= 0 || amount >= 2000 || typeof amount !== 'number') {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: 'O valor de depósito deve ser um valor numérico maior que 0 e menor que ',
