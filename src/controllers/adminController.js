@@ -73,4 +73,15 @@ const getUsers = async (req, res) => {
   }
 };
 
-module.exports = { newAccount, loginAdmin, getUsers };
+const getTransfers = async (req, res) => {
+  try {
+    const findTransferData = await adminServices.getTransfers();
+
+    return res.status(StatusCodes.OK).json({ data: findTransferData });
+  } catch (err) {
+    console.log(err);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+};
+
+module.exports = { newAccount, loginAdmin, getUsers, getTransfers };

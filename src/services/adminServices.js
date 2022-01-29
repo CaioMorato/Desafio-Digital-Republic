@@ -1,5 +1,6 @@
 const AdminAccount = require('../models/AdminAccount');
 const UserAccount = require('../models/UserAccount');
+const TransferData = require('../models/TransferData');
 
 const findAdmin = async (email) => {
   try {
@@ -42,4 +43,14 @@ const getUsers = async () => {
   }
 };
 
-module.exports = { findAdmin, newAccount, getUsers };
+const getTransfers = async () => {
+  try {
+    const findData = await TransferData.find({});
+
+    return findData;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { findAdmin, newAccount, getUsers, getTransfers };

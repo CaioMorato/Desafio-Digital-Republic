@@ -1,4 +1,5 @@
 const UserAccount = require('../models/UserAccount');
+const TransferData = require('../models/TransferData');
 
 const findUser = async (cpf) => {
   try {
@@ -44,19 +45,21 @@ const depositBalance = async (cpf, amount) => {
 
 const transferBalance = async (cpf, receiver, amount) => {
   try {
-    const removeBalance = await UserAccount.findOneAndUpdate(
+    const senderNewBalance = await UserAccount.findOneAndUpdate(
       { cpf },
       { $inc: { balance: -amount } },
       { new: true }
     );
 
-    const addBalance = await UserAccount.findOneAndUpdate(
+    const receiverNewBalance = await UserAccount.findOneAndUpdate(
       { cpf: receiver },
       { $inc: { balance: amount } },
       { new: true }
     );
 
-    return removeBalance;
+    const saveTrasferData = await TransferData.create({ sender: cpf, receiver, amount });
+
+    return senderNewBalance;
   } catch (err) {
     console.log(err);
   }
