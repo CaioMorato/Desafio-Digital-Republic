@@ -30,7 +30,7 @@ const userTestList = [
   },
 ];
 
-describe('Teste das listagens de Usuário do', () => {
+describe('Teste das listagens de Usuário', () => {
   describe('1 - Quando a listagem ocorre de forma correta', () => {
     let response = {};
 
@@ -80,7 +80,7 @@ describe('Teste das listagens de Usuário do', () => {
       expect(response.body.users[2].cpf).to.be.equal(thirdCPF);
     });
 
-    it('1.3 - Deve retornar o array com o nome dos usuários cadastrados corretamente', () => {
+    it('1.4 - Deve retornar o array com o nome dos usuários cadastrados corretamente', () => {
       const firstBalance = userTestList[0].balance;
       const secondBalance = userTestList[1].balance;
       const thirdBalance = userTestList[2].balance;
