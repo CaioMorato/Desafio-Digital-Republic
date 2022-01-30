@@ -17,7 +17,6 @@ const adminAlreadyExists = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -27,7 +26,7 @@ const adminNotFound = async (req, res, next) => {
     const findAccount = await adminServices.findAdmin(email);
 
     if (!findAccount) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
+      return res.status(StatusCodes.NOT_FOUND).json({
         message: 'Verifique o e-mail digitado e tente novamente',
       });
     }
@@ -35,7 +34,6 @@ const adminNotFound = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -54,7 +52,6 @@ const passwordMatch = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 

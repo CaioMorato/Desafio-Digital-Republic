@@ -27,7 +27,6 @@ const newAccount = async (req, res) => {
       .json({ message: 'Conta criada com Sucesso! Boas vindas ao DRBank!', data: { name, email } });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -40,7 +39,6 @@ const loginAdmin = async (req, res) => {
     return res.status(StatusCodes.OK).json({ token });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -51,7 +49,6 @@ const getUsers = async (req, res) => {
     return res.status(StatusCodes.OK).json({ users: findUsers });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -62,7 +59,6 @@ const getTransfers = async (req, res) => {
     return res.status(StatusCodes.OK).json({ data: findTransferData });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 

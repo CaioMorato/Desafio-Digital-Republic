@@ -58,8 +58,8 @@ describe('Testes de Login de Usuário', () => {
       response = await chai.request(app).put(`/user/${fakeUser.cpf}`);
     });
 
-    it('2.1 - Deve retornar o status 401', () => {
-      expect(response).to.have.status(401);
+    it('2.1 - Deve retornar o status 404', () => {
+      expect(response).to.have.status(404);
     });
 
     it('2.2 - Deve retornar uma mensagem dizendo que o CPF está incorreto', () => {

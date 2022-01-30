@@ -19,7 +19,6 @@ const tokenValidation = async (req, res, next) => {
     });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 

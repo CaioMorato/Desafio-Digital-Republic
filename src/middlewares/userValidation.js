@@ -16,7 +16,6 @@ const userAlreadyExists = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -28,14 +27,13 @@ const userNotFound = async (req, res, next) => {
 
     if (!findAccount) {
       return res
-        .status(StatusCodes.UNAUTHORIZED)
+        .status(StatusCodes.NOT_FOUND)
         .json({ message: 'Verifique o CPF digitado e tente novamente' });
     }
 
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -63,7 +61,6 @@ const receiverNotFound = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 

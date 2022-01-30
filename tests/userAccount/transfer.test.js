@@ -31,6 +31,7 @@ describe('Testes de Transferências entre Contas', () => {
     let response = {};
 
     before(async () => {
+      mongoose.connection.db.dropCollection('transferdatas');
       mongoose.connection.db.dropCollection('useraccounts');
 
       await chai.request(app).post('/user').send(testUsers[0]);
@@ -46,6 +47,10 @@ describe('Testes de Transferências entre Contas', () => {
         .post('/transfer')
         .set('Authorization', token)
         .send(transferData);
+    });
+
+    after(() => {
+      mongoose.connection.db.dropCollection('transferdatas');
     });
 
     it('1.1 - Deve retornar o status 200', () => {
