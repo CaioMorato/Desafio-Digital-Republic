@@ -28,7 +28,7 @@ const userNotFound = async (req, res, next) => {
 
     if (!findAccount) {
       return res
-        .status(StatusCodes.BAD_REQUEST)
+        .status(StatusCodes.UNAUTHORIZED)
         .json({ message: 'Verifique o CPF digitado e tente novamente' });
     }
 

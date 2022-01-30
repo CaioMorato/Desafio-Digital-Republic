@@ -27,12 +27,11 @@ const newAccount = async (req, res) => {
       data: {
         name,
         cpf,
-        balance,
+        balance: createUser.balance,
       },
     });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -45,7 +44,6 @@ const userLogin = async (req, res) => {
     return res.status(StatusCodes.OK).json({ token });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -54,9 +52,10 @@ const depositBalance = async (req, res) => {
     const { authorization } = req.headers;
     const { amount } = req.body;
 
-    if (amount <= 0 || amount >= 2000 || typeof amount !== 'number') {
+    if (amount <= 0 || amount > 2000 || typeof amount !== 'number') {
       return res.status(StatusCodes.BAD_REQUEST).json({
-        message: 'O valor de depósito deve ser um valor numérico maior que 0 e menor que ',
+        message:
+          'O valor de depósito deve ser um valor numérico maior que 0 e menor ou igual a 2000',
       });
     }
 
@@ -71,7 +70,6 @@ const depositBalance = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
@@ -84,14 +82,13 @@ const transferBalance = async (req, res) => {
 
     const { balance } = await accountServices.transferBalance(cpf, receiver, amount);
 
-    return res.status(StatusCodes.CREATED).json({
+    return res.status(StatusCodes.OK).json({
       message:
         'Sua transferência foi realizada e seu saldo foi atualizado! Obrigado por usar nossos serviços.',
       balance,
     });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
   }
 };
 
