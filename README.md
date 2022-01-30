@@ -36,7 +36,8 @@
     - [Login](#login-de-administrador)
     - [Listagem de contas](#listagem-de-contas)
     - [Listagem de transferências](#listagem-de-transferências)
-  - [Sobre o autor](#sobre-o-autor)
+- [Testes](#testes)
+- [Sobre o autor](#sobre-o-autor)
 
 ---
 
@@ -415,6 +416,24 @@ Você deve criar um arquivo .env na raíz do projeto com 2 variáveis:
   
 
 ---
+
+## Testes
+
+#### Esse projeto conta com uma cobertura de testes de integração.
+
+Foram utilizadas as bibliotecas **mocha** e **chai** para efetuar os testes de integração, e também a biblioteca **nyc/istanbul** para verificar a cobertura de testes
+
+#### Os testes podem ser realizados digitando o seguinte comando em seu terminal:
+
+**`npm test`**
+
+##### E a cobertura dos testes pode ser verificada digitando o seguinte comando:
+
+**`npm run coverage`**
+
+##### Gerando a seguinte resposta: 
+
+![coverage-test-image](./tests/images/test-coverage.png)
 
 ---
 
