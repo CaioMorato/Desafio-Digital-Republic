@@ -73,11 +73,13 @@ Com isso, ele mostrará que o servidor está iniciado e em qual porta.
 
 ## **Ambiente de Desenvolvimento .env**
 
-Você deve criar um arquivo .env na raíz do projeto com 2 variáveis:
+Há um arquivo na raiz do projeto chamado .env.example. Para que a aplicação funcione você deve usá-lo como base.
 
-***`PORT`*** será a variável onde você prefere que o servidor seja iniciado. Caso não coloque, o padrão será 3000.
+Renomeie o arquivo para somente ".env" e utilize as 2 variáveis definidas tendo em mente:
 
-***`SECRET`*** será a variável que armazena o ***segredo*** do jsonwebtoken
+***`PORT`*** será a variável que define a porta onde você prefere que o servidor seja iniciado. Caso não coloque, o padrão será 3000.
+
+***`SECRET`*** será a variável que armazena o ***segredo*** do jsonwebtoken.
 
 ---
 
