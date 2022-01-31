@@ -10,12 +10,12 @@
 
 ##### Bibliotecas:
 
-* [Express](https://expressjs.com/) - Framework Node
-* [Mongoose](https://mongoosejs.com/) - Integração com MongoDB
-* [Nodemon](https://www.npmjs.com/package/nodemon) - Reinicia automaticamente o servidor quando detecta alterações
-* [CryptoJS](https://cryptojs.gitbook.io/docs/) - Criptografia das senhas salvas
-* [JOI](https://joi.dev/) - Validações dos campos
-* [JSON Web Token](https://jwt.io/) - Geração de token de autenticação
+* [Express](https://expressjs.com/) v4.17.2 - Framework Node	
+* [Mongoose](https://mongoosejs.com/) v6.1.8 - Integração com MongoDB
+* [Nodemon](https://www.npmjs.com/package/nodemon) v2.0.15 - Reinicia automaticamente o servidor quando detecta alterações
+* [CryptoJS](https://cryptojs.gitbook.io/docs/) v4.1.1 - Criptografia das senhas salvas
+* [JOI](https://joi.dev/) v17.5.5 - Validações dos campos
+* [JSON Web Token](https://jwt.io/) v8.5.1 - Geração de token de autenticação
 
 ---
 
